@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: bharry-logistics-backend
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn harrylic_backend.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost,127.0.0.1"
