@@ -107,7 +107,7 @@ SIMPLE_JWT = {
 }
 
 # CORS Settings
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = ["https://harrylic-frontend.vercel.app", "http://localhost:3000", "https://your-deployed-frontend.onrender.com"]
 CORS_ALLOW_CREDENTIALS = True
 
 # Internationalization
