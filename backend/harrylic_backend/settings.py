@@ -2,8 +2,13 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+import whitenoise
+from dotenv import load_dotenv
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-bharry-logistics-super-secret-key-2026')
 
