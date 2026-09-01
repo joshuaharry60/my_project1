@@ -81,22 +81,30 @@ const Navbar = ({ onOpenAuth, onOpenQuote, onTrackCode, currentUser, onLogout, a
             </button>
 
             {currentUser ? (
-              <div className="flex items-center gap-3 pl-2 border-l border-slate-800">
+              <div className="relative flex items-center gap-2 pl-2 border-l border-slate-800">
                 <button
                   onClick={() => setActiveTab('dashboard')}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 text-xs font-medium text-slate-200 hover:bg-slate-700"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700/80 hover:border-orange-500/50 text-xs font-semibold text-slate-100 transition-all shadow-sm group"
                 >
                   {currentUser.profile_picture ? (
-                    <img src={currentUser.profile_picture} alt="Avatar" className="w-5 h-5 rounded-full object-cover" />
+                    <img src={currentUser.profile_picture} alt="Avatar" className="w-6 h-6 rounded-full object-cover border border-orange-500/40" />
                   ) : (
-                    <User className="w-4 h-4 text-orange-400" />
+                    <div className="w-6 h-6 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-[10px] border border-orange-500/40">
+                      {(currentUser.first_name || currentUser.username || 'U')[0].toUpperCase()}
+                    </div>
                   )}
-                  <span>{currentUser.first_name || currentUser.username}</span>
+                  <span className="group-hover:text-orange-400 transition-colors">
+                    {currentUser.first_name ? `${currentUser.first_name} ${currentUser.last_name || ''}`.trim() : currentUser.username}
+                  </span>
+                  {currentUser.is_google_account && (
+                    <span className="w-2 h-2 rounded-full bg-blue-400 title='Google Account'" />
+                  )}
                 </button>
+
                 <button
                   onClick={onLogout}
                   title="Sign Out"
-                  className="p-2 text-slate-400 hover:text-red-400 transition-colors"
+                  className="p-2 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -107,7 +115,7 @@ const Navbar = ({ onOpenAuth, onOpenQuote, onTrackCode, currentUser, onLogout, a
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/25 transition-all transform hover:-translate-y-0.5"
               >
                 <User className="w-4 h-4" />
-                <span>Client Login</span>
+                <span>Client Login / Register</span>
               </button>
             )}
           </div>
